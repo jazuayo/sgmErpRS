@@ -2,7 +2,6 @@ package ec.sgm.cta.rest;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,15 +21,12 @@ import ec.sgm.SigmaException;
 import ec.sgm.core.Fecha;
 import ec.sgm.cta.entity.Comprobante;
 import ec.sgm.cta.entity.ComprobanteCuenta;
-import ec.sgm.cta.entity.ComprobanteTmp;
 import ec.sgm.cta.entity.PlanCuenta;
 import ec.sgm.cta.modelo.ComprobanteConsultaReq;
 import ec.sgm.cta.modelo.ComprobanteReq;
 import ec.sgm.cta.repository.ComprobanteRepository;
-import ec.sgm.cta.repository.ComprobanteTmpRepository;
 import ec.sgm.cta.service.ComprobantePDFService;
 import ec.sgm.cta.service.ComprobanteService;
-import ec.sgm.cta.service.ComprobanteTmpService;
 import ec.sgm.org.entity.Documento;
 import ec.sgm.org.entity.Estado;
 import ec.sgm.org.entity.Organizacion;
@@ -58,10 +54,6 @@ public class ComprobanteController {
 	private OrganizacionRepository organizacionRepository;
 	@Autowired
 	private EstadoRepository estadoRepository;
-	@Autowired
-	private ComprobanteTmpService comprobanteTmpService;
-	@Autowired
-	private ComprobanteTmpRepository comprobanteTmpRepository;
 	@Autowired
 	private ComprobantePDFService servicePdf;
 
@@ -231,47 +223,4 @@ public class ComprobanteController {
 		}
 	}
 
-	/**
-	 * Pasar de la tambla tmp a normal, con datos tmp en base
-	 * 
-	 * @param registro
-	 * @return
-	 * @throws SigmaException
-	 */
-	@PostMapping(value = "/grabar/db/{organizacionCod}")
-	public HashMap<String, String> grabarDesdeTempBase(@PathVariable("organizacionCod") String organizacionCod)
-			throws SigmaException {
-
-		LOGGER.info("Buscando registros para " + organizacionCod);
-		// Buscar todos los comprobantes temporales de la organizacion
-		List<ComprobanteTmp> comprobantesTmp = comprobanteTmpRepository.findByOrganizacionCod(organizacionCod);
-
-		if (comprobantesTmp.size() == 0) {
-			String mensaje = "No existen comprobantes temporales a procesar para " + organizacionCod;
-			LOGGER.error(mensaje);
-			throw new SigmaException(mensaje);
-		}
-		LOGGER.info("Registros a procesar " + comprobantesTmp.size());
-
-		// valida los docuemntos y las cuentas
-		LOGGER.info("Validando documentos y cuentas...");
-		comprobanteTmpService.pctaSyncValidaReferencias(comprobantesTmp);
-
-		// Obtener el valore de las fechas
-		LOGGER.info("Buscando fechas...");
-		List<Date> fechasComprobantesTmp = comprobanteTmpRepository.fechasComprobantesTmp(organizacionCod);
-
-		System.out.println(fechasComprobantesTmp.size());
-
-		// Grabar de tmp a normal por fecha y org
-		LOGGER.info("Generando cambio...");
-		int i = 1;
-		for (Date fecha : fechasComprobantesTmp) {
-			LOGGER.info(i + " de " + fechasComprobantesTmp.size() + " Procesando fecha... " + fecha);
-			comprobanteTmpService.pctaSyncComprobanteFinaliza(organizacionCod, fecha);
-			i++;
-		}
-
-		return MensajeResponse.ok();
-	}
 }
