@@ -63,7 +63,6 @@ public class Constantes {
 	public final static String CODIGO_REPORTE_INV = "invRep";
 	// Tipo de reportes
 	public final static String FORMATO_TIPO_REPORTE_PDF = ".pdf";
-	public final static String FORMATO_TIPO_REPORTE_EXCEL = ".xlsx";
 	// Codigos reportes contabilidad
 	public final static String COD_REPORTE_BALANCE_GENERAL = "BG";
 	public final static String COD_REPORTE_ESTADO_RESULTADOS = "ER";

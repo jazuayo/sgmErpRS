@@ -15,11 +15,8 @@ import ec.sgm.core.Constantes;
 import ec.sgm.core.Fecha;
 import ec.sgm.fac.modelo.ReporteFacturaReq;
 import ec.sgm.fac.service.ReporteFacturasPDFService;
-import ec.sgm.fac.service.ReporteFacturasXLSXService;
 import ec.sgm.fac.service.ReporteInvMovimientoPDFService;
-import ec.sgm.fac.service.ReporteInvMovimientoXLSXService;
 import ec.sgm.fac.service.ReporteRetencionesPDFService;
-import ec.sgm.fac.service.ReporteRetencionesXLSXService;
 
 @RestController
 @RequestMapping("/facturacion")
@@ -28,15 +25,9 @@ public class ReporteFacturacionController {
 	@Autowired
 	private ReporteFacturasPDFService reporteFacturas;
 	@Autowired
-	private ReporteFacturasXLSXService reporteFacturasExcel;
-	@Autowired
 	private ReporteRetencionesPDFService reporteRet;
 	@Autowired
-	private ReporteRetencionesXLSXService reporteRetExcel;
-	@Autowired
 	private ReporteInvMovimientoPDFService reporteInvMovimientos;
-	@Autowired
-	private ReporteInvMovimientoXLSXService reporteInvMovimientosExcel;
 
 	/**
 	 * Generar reporte de facturas y/o retenciones generales
@@ -59,46 +50,16 @@ public class ReporteFacturacionController {
 			// if para dividir si es una retencion
 			switch (categoriaCod) {
 			case Constantes.ORIGEN_COMPRA_RETENCION:
-				String retCat = Constantes.ORIGEN_COMPRA_FACTURA;
-				switch (registro.getFormatoReporte()) {
-				case Constantes.FORMATO_TIPO_REPORTE_EXCEL:
-					return reporteRetExcel.generarReportesRetencionesExcel(orgCod, retCat, fechaDesde, fechaHasta);
-				case Constantes.FORMATO_TIPO_REPORTE_PDF:
-					return reporteRet.generarReporteRetenciones(orgCod, retCat, fechaDesde, fechaHasta);
-				default:
-					return null;
-				}
+				return reporteRet.generarReporteRetenciones(orgCod, Constantes.ORIGEN_COMPRA_FACTURA, fechaDesde,
+						fechaHasta);
 			case Constantes.ORIGEN_VENTA_RETENCION:
-				String ventCat = Constantes.ORIGEN_VENTA_FACTURA;
-				switch (registro.getFormatoReporte()) {
-				case Constantes.FORMATO_TIPO_REPORTE_EXCEL:
-					return reporteRetExcel.generarReportesRetencionesExcel(orgCod, ventCat, fechaDesde, fechaHasta);
-				case Constantes.FORMATO_TIPO_REPORTE_PDF:
-					return reporteRet.generarReporteRetenciones(orgCod, ventCat, fechaDesde, fechaHasta);
-				default:
-					return null;
-				}
+				return reporteRet.generarReporteRetenciones(orgCod, Constantes.ORIGEN_VENTA_FACTURA, fechaDesde,
+						fechaHasta);
 			case Constantes.CODIGO_REPORTE_INV:
 				Long itemId = registro.getItemId();
-				switch (registro.getFormatoReporte()) {
-				case Constantes.FORMATO_TIPO_REPORTE_EXCEL:
-					return reporteInvMovimientosExcel.generarReportesInvMovimientosExcel(orgCod, fechaDesde, fechaHasta,
-							itemId);
-				case Constantes.FORMATO_TIPO_REPORTE_PDF:
-					return reporteInvMovimientos.generarReporteInvMovimientos(orgCod, fechaDesde, fechaHasta, itemId);
-				default:
-					return null;
-				}
+				return reporteInvMovimientos.generarReporteInvMovimientos(orgCod, fechaDesde, fechaHasta, itemId);
 			default:
-				switch (registro.getFormatoReporte()) {
-				case Constantes.FORMATO_TIPO_REPORTE_EXCEL:
-					return reporteFacturasExcel.generarReportesFacturasExcel(orgCod, categoriaCod, fechaDesde,
-							fechaHasta);
-				case Constantes.FORMATO_TIPO_REPORTE_PDF:
-					return reporteFacturas.generarReporteFacturas(orgCod, categoriaCod, fechaDesde, fechaHasta);
-				default:
-					return null;
-				}
+				return reporteFacturas.generarReporteFacturas(orgCod, categoriaCod, fechaDesde, fechaHasta);
 			}
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
