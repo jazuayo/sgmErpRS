@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style type="text/css">
+		@page {
+			margin: 1cm;
+			size: letter;
+		}
+
+		.detalle,
+		.datosPersona,
+		.cabecera td,
+		.totales td {
+			border: black 1px solid;
+			padding: 2px;
+			border-radius: 10px;
+		}
+
+		#espacio {
+			width: 5px;
+		}
+
+		#espacio,
+		#forma,
+		#logo {
+			border: 0;
+		}
+
+		.logo img {
+			max-width: 100%;
+			height: auto;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="cabezera">
+		<table class="cabecera" width="100%">
+			<tr>
+				<td id="logo">
+					<div class="logo">
+						<img src="$logoOrg" width="384" />
+					</div>
+				</td>
+				<td id="espacio"></td>
+				<td rowspan="2">
+					<div id="factura">
+						<h4>R.U.C.: $sriRuc</h4>
+						<h2>R E T E N C I Ó N</h2>
+						<h4>Retención No: $documentoNumero</h4>
+						<h5>Número de Autorización:</h5>
+						<h5>$autorizacionNumero</h5>
+						<h5>Fecha y Hora de Autorización: $autorizacionFecha</h5>
+						<h5>Ambiente: $sriCeAmbiente</h5>
+						<h5>Clave de Acceso:</h5>
+						<div>&nbsp;</div>
+						<div style="margin-left: 20px;">
+							<img src="$CodBarClaveAcceso" width="275" height="50" />
+						</div>
+					</div>
+
+				</td>
+			</tr>
+			<tr>
+				<td style="border:1px solid black;  vertical-align:top; font-size: 12px;">
+					<div><b>$sriRazonSocial</b></div>
+					<div>&nbsp;</div>
+					<div><b>Dirección Matriz:</b> $sriMatrizDir</div>
+					<div>&nbsp;</div>
+					<div><b>Dirección Sucursal:</b> $sriEstablecimientoDir</div>
+					<div>&nbsp;</div>
+					<div><b>Contribuyente Especial Nro:</b> $sriContribuyenteEspecial</div>
+					<div>&nbsp;</div>
+					<div><b>Obligado a llevar Contabilidad:</b> $sriObligadoContabilidad</div>
+					<div>&nbsp;</div>
+				</td>
+				<td id="espacio"></td>
+			</tr>
+		</table>
+	</div>
+	<div>&nbsp;</div>
+	<div id="datosCliente">
+		<div>
+			<table class="datosPersona" width="100%" style="font-size: 13px;">
+
+				<tr>
+					<td colspan="2">
+						<b>Razón Social/Nombre y Apellido:</b> $nombre
+					</td>
+				</tr>
+				<tr>
+					<td id="espacio"></td>
+				</tr>
+
+				<tr>
+
+					<td width="50%">
+						<b>Fecha de Emisión:</b> $fechaEmite
+					</td>
+					<td width="50%">
+						<b>RUC /CI:</b> $numeroId
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div>&nbsp;</div>
+	<div id="detalles">
+		<table
+			style="width: 100%; border-collapse: collapse; margin-left: auto; margin-right: auto; font-size: 13px; text-align: right;"
+			border="1">
+			<tr>
+				<th style="width:10%">
+					<h6><strong>Documento</strong></h6>
+				</th>
+				<th style="width:30%">
+					<h6><strong>Número</strong></h6>
+				</th>
+				<th style="width:10%">
+					<h6><strong>Fecha Emisión</strong></h6>
+				</th>
+				<th style="width:10%">
+					<h6><strong>Ejercicio Fiscal</strong></h6>
+				</th>
+				<th style="width:10%">
+					<h6><strong>Base Imponible</strong></h6>
+				</th>
+				<th style="width:10%">
+					<h6><strong>Impuesto</strong></h6>
+				</th>
+				<th style="width:10%">
+					<h6><strong>% Retención</strong></h6>
+				</th>
+				<th style="width:10%">
+					<h6><strong>Valor</strong></h6>
+				</th>
+			</tr>
+			<tr id="items"></tr>
+		</table>
+	</div>
+
+</body>
+
+</html>

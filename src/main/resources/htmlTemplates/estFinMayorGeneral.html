@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style type="text/css">
+		@page {
+			margin: 1cm;
+			size: letter;
+		}
+
+		#espacio {
+			width: 5px;
+			border: 0;
+		}
+
+		.datosCom td {
+			border: 0;
+		}
+
+		.show-border th {
+			border-top: thin solid;
+			border-bottom: thin solid;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="cabezera">
+		<table width="100%" style="text-align: center;">
+			<tr>
+				<th>
+					MAYOR GENERAL DEL $FECHADESDE AL $FECHAHASTA
+				</th>
+			</tr>
+		</table>
+	</div>
+	<div>&nbsp;</div>
+	<div id="detalles">
+		<table style="text-align: left; font-size: 12px;" width="100%">
+			<tr class="show-border">
+				<th style="width:13%">Fecha</th>
+				<th style="width:23%">No. Comprobante</th>
+				<th style="width:8%">Debito</th>
+				<th style="width:8%">Credito</th>
+				<th style="width:8%">Saldo</th>
+				<th style="width:40%">Concepto</th>
+			</tr>
+			<tr></tr>
+			<tr>
+				<td colspan="6" border="0">
+					<b>Cuenta Contable: $cuenta_cod $cuenta_des</b>
+				</td>
+			</tr>
+			<tr id="items"></tr>
+			<tr>
+				<td></td>
+				<td style="text-align: right; font-size: 12px;"><b>Total:</b></td>
+				<td style="text-align: right; font-size: 12px;">$sumaDeb</td>
+				<td style="text-align: right; font-size: 12px;">$sumaCred</td>
+			</tr>
+		</table>
+
+	</div>
+	<div>&nbsp;</div>
+	<div id="firmas"></div>
+</body>
+
+</html>

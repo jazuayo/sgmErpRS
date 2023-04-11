@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style type="text/css">
+		@page {
+			margin: 1cm;
+			size: letter;
+		}
+
+		.detalle,
+		.datosPersona,
+		.cabecera td,
+		.totales td {
+			border: black 1px solid;
+			padding: 2px;
+			border-radius: 10px;
+		}
+
+		#espacio {
+			width: 5px;
+		}
+
+		#espacio,
+		#forma,
+		#logo {
+			border: 0;
+		}
+
+		.logo img {
+			max-width: 100%;
+			height: auto;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="cabezera">
+		<table class="cabecera" width="100%">
+			<tr>
+				<td id="logo">
+					<div class="logo">
+						<img src="$logoOrg" width="384" />
+					</div>
+				</td>
+				<td id="espacio"></td>
+				<td rowspan="2" style="border:1px solid black;  vertical-align:top; font-size: 12px;">
+					<div id="factura">
+						<div>R.U.C: $sriRuc</div>
+						<div>&nbsp;</div>
+						<div style="text-align: center;">$notaDes</div>
+						<div>&nbsp;</div>
+						<div>No. $documentoNumero</div>
+						<div>&nbsp;</div>
+						<div>NÚMERO DE AUTORIZACIÓN</div>
+						<div>&nbsp;</div>
+						<div>$autorizacionNumero</div>
+						<div>&nbsp;</div>
+						<div>FECHA Y HORA DE AUTORICACIÓN: $autorizacionFecha</div>
+						<div>&nbsp;</div>
+						<div>AMBIENTE: $sriCeAmbiente</div>
+						<div>&nbsp;</div>
+						<div>EMISIÓN: $notaEmision</div>
+						<div>&nbsp;</div>
+						<div>CLAVE DE ACCESO</div>
+						<div>&nbsp;</div>
+						<div style="margin-left: 15px;">
+							<img src="$CodBarClaveAcceso" width="275" height="50" />
+						</div>
+					</div>
+
+				</td>
+			</tr>
+			<tr>
+				<td style="border:1px solid black;  vertical-align:top; font-size: 13px;">
+					<div style="text-align: center;"><b>$sriRazonSocial</b></div>
+					<div>&nbsp;</div>
+					<div><b>Dirección Matriz:</b> $sriMatrizDir</div>
+					<div>&nbsp;</div>
+					<div><b>Dirección Sucursal:</b> $sriEstablecimientoDir</div>
+					<div>&nbsp;</div>
+					<div><b>Contribuyente Especial Nro:</b> $sriContribuyenteEspecial</div>
+					<div>&nbsp;</div>
+					<div><b>OBLIGADO A LLEVAR CONTABILIDAD:</b> $sriObligadoContabilidad</div>
+					<div>&nbsp;</div>
+				</td>
+				<td id="espacio"></td>
+			</tr>
+		</table>
+	</div>
+	<div>&nbsp;</div>
+	<div id="datosCliente">
+		<div>
+			<table class="datosPersona" width="100%" style="font-size: 13px;">
+
+				<tr>
+					<td colspan="2">
+						<b>Razón Social/Nombre y Apellido:</b> $nombre
+					</td>
+				</tr>
+				<tr>
+					<td id="espacio"></td>
+				</tr>
+
+				<tr>
+
+					<td width="50%">
+						<b>Fecha de Emisión:</b> $fechaAdicion
+					</td>
+					<td width="50%">
+						<b>RUC /CI:</b> $numeroId
+					</td>
+				</tr>
+				<tr>
+					<td id="espacio" colspan="2">
+						<hr>
+						</hr>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>Comprobante que modifica :</b>"FACTURA: $DOC_NUMERO_MODIFICA"</td>
+				</tr>
+				<tr>
+					<td id="espacio" colspan="2"> </td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>Fecha emisión (Comprobante Modificacion) :</b>$DOC_FECHA_EMISION_MODIFICA</td>
+				</tr>
+
+			</table>
+		</div>
+	</div>
+	<div>&nbsp;</div>
+	<div id="detalles">
+		<table style="width: 100%; border-collapse: collapse; margin-left: auto; margin-right: auto; font-size: 13px;"
+			border="1">
+			<tr>
+				<th style="width:70%">
+					<h6><strong>RAZÓN DE MODIFICACIÓN </strong></h6>
+				</th>
+				<th style="width:30%">
+					<h6><strong>VALOR MODIFICACIÓN</strong></h6>
+				</th>
+			</tr>
+			<tr id="items"></tr>
+		</table>
+	</div>
+	<div>&nbsp;</div>
+	<div id="resumen">
+		<table width="100%">
+			<tr>
+				<td width="50%"></td>
+				<td width="40%">
+					<div>SUBTOTAL 12%</div>
+					<div>SUBTOTAL 0%</div>
+					<div>SUBTOTAL SIN IMPUESTOS</div>
+					<div>DESCUENTO</div>
+					<div>IVA 12%</div>
+					<div>PROPINA</div>
+					<div>VALOR TOTAL</div>
+				</td>
+				<td width="10%">
+					<div>$sub12</div>
+					<div>$sub0</div>
+					<div>$subSinImp</div>
+					<div>$desc</div>
+					<div>$impuestosValor</div>
+					<div>$propina</div>
+					<div>$vTotal</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+
+</html>

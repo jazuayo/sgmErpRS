@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style type="text/css">
+		@page {
+			margin: 1cm;
+			size: letter;
+		}
+
+		#espacio {
+			width: 5px;
+		}
+
+		.detalle,
+		.datosPersona,
+		.cabecera td,
+		.totales td {
+			border: black 1px solid;
+			padding: 2px;
+
+		}
+
+		#espacio,
+		#forma,
+		#logo {
+			border: 0;
+		}
+
+		.logo img {
+			max-width: 100%;
+			height: auto;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="cabezera">
+		<table class="cabecera" width="100%">
+			<tr>
+				<td id="logo">
+					<div class="logo">
+						<img src="$logoOrg"  width="384" />
+					</div>
+				</td>
+				<td id="espacio"></td>
+				<td rowspan="2" id="datosFac" width="50%"
+					style="border:1px solid black;  vertical-align:top; font-size: 12px;">
+					<div id="factura">
+						<div><b>R.U.C: $sriRuc</b></div>
+						<div>&nbsp;</div>
+						<div><b>F A C T U R A</b></div>
+						<div>&nbsp;</div>
+						<div><b><span style=" color: #ff0000;">No. $documentoNumero</span></b>
+						</div>
+						<div>&nbsp;</div>
+						<div><b>NÚMERO DE AUTORIZACIÓN</b></div>
+						<div>&nbsp;</div>
+						<div><b>$autorizacionNumero</b></div>
+						<div>&nbsp;</div>
+						<div><b>FECHA Y HORA DE AUTORIZACIÓN: $autorizacionFecha </b></div>
+						<div>&nbsp;</div>
+						<div><b>AMBIENTE: $sriCeAmbiente</b></div>
+						<div>&nbsp;</div>
+						<div><b>CLAVE DE ACCESO</b></div>
+						<div>&nbsp;</div>
+						<div style="margin-left: 20px;">
+							<img src="$CodBarClaveAcceso" width="275" height="50" />
+						</div>
+						<div>$claveAcceso</div>
+					</div>
+
+				</td>
+			</tr>
+			<tr>
+				<td style="vertical-align:top; font-size: 13px;">
+					<div><b>$sriNombreComercial</b></div>
+					<div>&nbsp;</div>
+					<div>Dirección Matriz: $sriMatrizDir</div>
+					<div>&nbsp;</div>
+					<div>Dirección Sucursal: $sriEstablecimientoDir</div>
+					<div>&nbsp;</div>
+					<div>OBLIGADO A LLEVAR CONTABILIDAD: $sriObligadoContabilidad</div>
+					<div>&nbsp;</div>
+				</td>
+				<td id="espacio"></td>
+			</tr>
+		</table>
+
+	</div>
+
+	<div>&nbsp;</div>
+	<div id="datosCliente">
+
+		<table width="100%" style="font-size: 13px;">
+
+			<tr>
+				<td colspan="2">
+					<b>Razón Social/Nombre y Apellido:</b> $nombre
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<b>Dirección:</b> $direccion
+				</td>
+			</tr>
+			<tr>
+				<td width="50%">
+					<b>Identificación:</b> $numeroId
+				</td>
+				<td width="50%">
+					<b>Fecha de Emisión:</b> $fechaEmite
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div>&nbsp;</div>
+	<div id="detalles">
+		<table style="width: 100%; border-collapse: collapse; margin-left: auto; margin-right: auto; font-size: 13px;"
+			border="1">
+			<tr>
+				<th style="width:10%">
+					<h6><strong>CODIGO PRINCIPAL</strong></h6>
+				</th>
+				<th style="width:10%">
+					<h6><strong>CANT.</strong></h6>
+				</th>
+				<th style="width:50%">
+					<h6><strong>DESCRIPCION</strong></h6>
+				</th>
+				<th style="width:10%">
+					<h6><strong>P. UNIT.</strong></h6>
+				</th>
+				<th style="width:10%">
+					<h6><strong>DSCTO</strong></h6>
+				</th>
+				<th style="width:10%">
+					<h6><strong>TOTAL</strong></h6>
+				</th>
+			</tr>
+			<tr id="items"></tr>
+		</table>
+	</div>
+	<div>&nbsp;</div>
+	<div id="resumen">
+		<table width="100%">
+			<tr>
+				<td width="15%">
+					<div>Email</div>
+					<div>Telefono</div>
+					<div>Forma de pago</div>
+				</td>
+				<td width="35%">
+					<div>$email</div>
+					<div>$telefono</div>
+					<div>$formaPago</div>
+				</td>
+				<td width="30%">
+					<div>SUBTOTAL 12%</div>
+					<div>SUBTOTAL 0%</div>
+					<div>SUBTOTAL SIN IMPUESTOS</div>
+					<div>DESCUENTO</div>
+					<div>IVA 12%</div>
+					<div>VALOR TOTAL</div>
+				</td>
+				<td align="right" width="10%">
+					<div>$sub12</div>
+					<div>$sub0</div>
+					<div>$subSinImp</div>
+					<div>$desc</div>
+					<div>$impuestosValor</div>
+					<div>$vTotal</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+
+</html>

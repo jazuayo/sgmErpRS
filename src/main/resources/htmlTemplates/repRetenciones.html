@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style type="text/css">
+		@page {
+			margin: 1cm;
+			size: letter;
+		}
+
+		#espacio {
+			width: 5px;
+		}
+
+		.cabecera td,
+		.totales td {
+			border: black 1px solid;
+			padding: 2px;
+
+		}
+
+		#espacio,
+		#forma {
+			border: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="cabezera">
+		<table width="100%" style="text-align: center;">
+			<tr>
+				<th>
+					REPORTE DE RETENCIONES
+				</th>
+			</tr>
+		</table>
+	</div>
+	<div>&nbsp;</div>
+	<div>
+		<table width="100%" style="font-size: 12px;">
+
+			<tr>
+				<td colspan="2">
+					<b>Fecha de reporte:</b> $fechaActual
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<b>Organizacion:</b> $orgDescripcion
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<b>Rango de fechas:</b> $fechaDesde - $fechaHasta
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<b>Categoria:</b> $categoriaDes
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<b>Numero de registros:</b> $numRegistros
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div>&nbsp;</div>
+	<div id="detalles">
+		<table style="width: 100%; border-collapse: collapse; margin-left: auto; margin-right: auto; font-size: 13px;"
+			border="1">
+			<tr>
+				<th>
+					<h6><strong>Retencion Id</strong></h6>
+				</th>
+				<th>
+					<h6><strong>Fecha Emision</strong></h6>
+				</th>
+				<th>
+					<h6><strong>Identificacion</strong></h6>
+				</th>
+				<th>
+					<h6><strong>Cliente Proveedor</strong></h6>
+				</th>
+				<th>
+					<h6><strong>Num. Documento</strong></h6>
+				</th>
+				<th>
+					<h6><strong>Base Retencion</strong></h6>
+				</th>
+				<th>
+					<h6><strong>Cod. Retencion</strong></h6>
+				</th>
+				<th>
+					<h6><strong>% Retencion</strong></h6>
+				</th>
+				<th>
+					<h6><strong>Valor Retenido</strong></h6>
+				</th>
+				<th>
+					<h6><strong>Documento Fac</strong></h6>
+				</th>
+				<th>
+					<h6><strong>Fecha Emision Fac</strong></h6>
+				</th>
+				<th>
+					<h6><strong>Documento Numero Fac</strong></h6>
+				</th>
+			</tr>
+			<tr id="items"></tr>
+		</table>
+	</div>
+
+</body>
+
+</html>

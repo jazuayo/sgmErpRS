@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style type="text/css">
+		@page {
+			margin: 1cm;
+			size: letter;
+		}
+
+		#espacio {
+			width: 5px;
+			border: 0;
+		}
+
+		.datosCom td {
+			border: 0;
+		}
+
+		.show-border th {
+			border-top: thin solid;
+			border-bottom: thin solid;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="cabezera">
+		<table class="datosCom" width="100%" style="text-align: left; font-size: 13px">
+			<tr>
+				<td colspan="2"><b>$documento</b></td>
+				<td style="text-align: right;">$comprobante_cod</td>
+			</tr>
+			<tr>
+				<td id="espacio"></td>
+			</tr>
+
+			<tr>
+				<td><b>FECHA:</b></td>
+				<td>$fecha</td>
+			</tr>
+			<tr>
+				<td><b>CONCEPTO:</b></td>
+				<td>$conceptocab</td>
+			</tr>
+			<tr>
+				<td><b>FUENTE:</b></td>
+				<td>$fuente</td>
+			</tr>
+		</table>
+	</div>
+	<div>&nbsp;</div>
+	<div id="detalles">
+		<table style="text-align: left; font-size: 13px" width="100%">
+			<tr class="show-border">
+				<th style="width:15%">CUENTA</th>
+				<th style="width:30%">NOMBRE</th>
+				<th style="width:10%">DEBE</th>
+				<th style="width:10%">HABER</th>
+				<th style="width:35%">CONCEPTO</th>
+			</tr>
+			<tr id="items"></tr>
+			<tr class="show-border">
+				<th></th>
+				<th>TOTALES</th>
+				<th style="text-align: right;">$sumaDebe</th>
+				<th style="text-align: right;">$sumaHaber</th>
+				<th></th>
+			</tr>
+		</table>
+	</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div id="firmas">
+		<table style="text-align: center; font-size: 13px;" width="100%">
+			<tr>
+				<th>
+					<hr width="80%" />ELABORADO POR
+				</th>
+				<th>
+					<hr width="80%" />REVISADO POR
+				</th>
+				<th>
+					<hr width="80%" />RECIBI CONFORME
+				</th>
+			</tr>
+		</table>
+	</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+</body>
+
+</html>

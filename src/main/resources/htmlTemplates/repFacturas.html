@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style type="text/css">
+		@page {
+			margin: 1cm;
+			size: letter;
+		}
+
+		#espacio {
+			width: 5px;
+		}
+
+		.detalle,
+		.datosPersona,
+		.cabecera td,
+		.totales td {
+			border: black 1px solid;
+			padding: 2px;
+
+		}
+
+		#espacio,
+		#forma,
+		#logo {
+			border: 0;
+		}
+
+		.logo img {
+			max-width: 100%;
+			height: auto;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="cabezera">
+		<table width="100%" style="text-align: center;">
+			<tr>
+				<th>
+					REPORTE DE FACTURAS
+				</th>
+			</tr>
+		</table>
+	</div>
+	<div>&nbsp;</div>
+	<div>
+		<table width="100%" style="font-size: 12px;">
+
+			<tr>
+				<td colspan="2">
+					<b>Fecha de reporte:</b> $fechaActual
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<b>Organizacion:</b> $orgDescripcion
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<b>Rango de fechas:</b> $fechaDesde - $fechaHasta
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<b>Categoria:</b> $categoriaDes
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<b>Numero de registros:</b> $numRegistros
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div>&nbsp;</div>
+	<div id="detalles">
+		<table style="width: 100%; border-collapse: collapse; margin-left: auto; margin-right: auto; font-size: 13px;"
+			border="1">
+			<tr>
+				<th style="width:5%">
+					<h6><strong>ID</strong></h6>
+				</th>
+				<th style="width:10%">
+					<h6><strong>Tipo</strong></h6>
+				</th>
+				<th style="width:5%">
+					<h6><strong>Identificacion</strong></h6>
+				</th>
+				<th style="width:10%">
+					<h6><strong>Persona</strong></h6>
+				</th>
+				<th style="width:10%">
+					<h6><strong>Num. Factura</strong></h6>
+				</th>
+				<th style="width:10%">
+					<h6><strong>Fecha Emision</strong></h6>
+				</th>
+				<th style="width:5%">
+					<h6><strong>Base sin IVA</strong></h6>
+				</th>
+				<th style="width:5%">
+					<h6><strong>Base con IVA</strong></h6>
+				</th>
+				<th style="width:5%">
+					<h6><strong>IVA</strong></h6>
+				</th>
+				<th style="width:5%">
+					<h6><strong>Total factura</strong></h6>
+				</th>
+				<th style="width:10%">
+					<h6><strong>Operacion</strong></h6>
+				</th>
+				<th style="width:5%">
+					<h6><strong>Estado</strong></h6>
+				</th>
+			</tr>
+			<tr id="items"></tr>
+		</table>
+	</div>
+
+</body>
+
+</html>
