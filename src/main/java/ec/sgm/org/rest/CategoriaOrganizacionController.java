@@ -1,7 +1,6 @@
 package ec.sgm.org.rest;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -9,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +15,6 @@ import ec.sgm.SigmaException;
 import ec.sgm.org.entity.CategoriaOrganizacion;
 import ec.sgm.org.entity.Organizacion;
 import ec.sgm.org.model.CategoriaResp;
-import ec.sgm.org.model.MensajeResponse;
 import ec.sgm.org.repository.CategoriaOrganizacionRepository;
 import ec.sgm.org.repository.OrganizacionRepository;
 
@@ -64,21 +61,4 @@ public class CategoriaOrganizacionController {
 		}
 	}
 
-	/**
-	 * Eliminar la categoria de la organizacion
-	 * 
-	 * @param catOrgId
-	 * @return
-	 * @throws SigmaException
-	 */
-	@PostMapping(value = "/{catOrgId}")
-	public HashMap<String, String> elminar(@PathVariable("catOrgId") Long catOrgId) throws SigmaException {
-		try {
-			repositoryCategoriaOrg.deleteById(catOrgId);
-			return MensajeResponse.ok();
-		} catch (Exception e) {
-			LOGGER.error(e.getMessage());
-			throw new SigmaException("Error al eliminar la categoría de la organizacion", e);
-		}
-	}
 }
