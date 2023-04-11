@@ -452,27 +452,25 @@ public class FacturaController {
 						String itemDes = detalle.getItem().getItemDes();
 						detalle.setDescripcion(itemDes);
 					}
-					// control de lotes
-					String itemGrupoTipo = item.getItemGrupo().getItemGrupoTipo().getItemGrupoTipoCod();
-					if (!itemGrupoTipo.equals("S")) {
-						// Si el docuemento permite actualizar inventario
-						if (documento.getInventario().booleanValue() == true) {
 
-							String loteNombre = detalle.getLote();
-							List<ItemInventario> inventario = repositoryItemInv.findByLoteAndItemId(loteNombre,
-									item.getItemId());
+					// Si el docuemento permite actualizar inventario
+					if (documento.getInventario().booleanValue() == true) {
 
-							ItemInventario itemInv = new ItemInventario();
-							itemInv.setItemId(item.getItemId());
-							itemInv.setLote(loteNombre);
-							for (ItemInventario lote : inventario) {
-								itemInv = lote;
-							}
-							itemInv.setFechaVence(detalle.getFechaVence());
-							itemInv.setCantidad(itemInv.getCantidad() + detalle.getCantidad().longValue());
-							repositoryItemInv.save(itemInv);
+						String loteNombre = detalle.getLote();
+						List<ItemInventario> inventario = repositoryItemInv.findByLoteAndItemId(loteNombre,
+								item.getItemId());
+
+						ItemInventario itemInv = new ItemInventario();
+						itemInv.setItemId(item.getItemId());
+						itemInv.setLote(loteNombre);
+						for (ItemInventario lote : inventario) {
+							itemInv = lote;
 						}
+						itemInv.setFechaVence(detalle.getFechaVence());
+						itemInv.setCantidad(itemInv.getCantidad() + detalle.getCantidad().longValue());
+						repositoryItemInv.save(itemInv);
 					}
+
 					// actualiza el precio del item si me permite el documento
 					if (documento.getInventario().booleanValue() == true) {
 						item.setPrecioVenta(detalle.getPvp());
@@ -496,14 +494,13 @@ public class FacturaController {
 						String itemDes = detalle.getItem().getItemDes();
 						detalle.setDescripcion(itemDes);
 					}
-					String itemGrupoTipo = item.getItemGrupo().getItemGrupoTipo().getItemGrupoTipoCod();
+
 					// resto del inventario
-					if (!itemGrupoTipo.equals("S")) {
-						ItemInventario itemInventario = repositoryItemInv.findById(Long.valueOf(detalle.getLote()))
-								.orElse(null);
-						itemInventario.setCantidad(itemInventario.getCantidad() - detalle.getCantidad().longValue());
-						repositoryItemInv.save(itemInventario);
-					}
+					ItemInventario itemInventario = repositoryItemInv.findById(Long.valueOf(detalle.getLote()))
+							.orElse(null);
+					itemInventario.setCantidad(itemInventario.getCantidad() - detalle.getCantidad().longValue());
+					repositoryItemInv.save(itemInventario);
+
 				}
 				factura.setDetalles(registro.getDetalles());
 				factura.setDocumentoId(documentoId);
