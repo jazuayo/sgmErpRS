@@ -1,6 +1,5 @@
 package ec.sgm.fac.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -27,23 +26,23 @@ public class ItemGrupoTipoController {
 	private ParametroRepository parametroRepository;
 
 	@GetMapping(value = "/{organizacionCod}")
-	public List<ItemGrupoTipo> listarTipoGrupoPorOrganizacion(@PathVariable("organizacionCod") String organizacionCod)
+	public ItemGrupoTipo listarTipoGrupoPorOrganizacion(@PathVariable("organizacionCod") String organizacionCod)
 			throws SigmaException {
+		ItemGrupoTipo itemGrupoTipo = null;
+		String clave = "TipoProducto";
+		List<Parametro> parametros = parametroRepository.findByClaveAndOrganizacionCodOrderByParametroDes(clave,
+				organizacionCod);
+		if (parametros.size() != 1) {
+			throw new SigmaException("Hay " + parametros.size() + " para el TipoProducto en parametros",
+					"Error de registro en DB");
+		}
 		try {
-			String clave = "TipoProducto";
-			List<ItemGrupoTipo> respuesta = new ArrayList<ItemGrupoTipo>();
-			List<Parametro> parametros = parametroRepository.findByClaveAndOrganizacionCodOrderByParametroDes(clave,
-					organizacionCod);
-			for (Parametro parametro : parametros) {
-				String valor = parametro.getValor();
-				ItemGrupoTipo itemGrupoTipo = repositoryItemGrupoTipo.findById(valor).get();
-				respuesta.add(itemGrupoTipo);
-			}
-			return respuesta;
+			itemGrupoTipo = repositoryItemGrupoTipo.findById(parametros.get(0).getValor()).get();
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
 			throw new SigmaException("Error al listar los items grupo tipos por organizacion.", e);
 		}
+		return itemGrupoTipo;
 
 	}
 
